@@ -10,3 +10,5 @@ Network definition files are what defines the layout of a network.  If you want 
 The format is:
 Input layer count, hidden layer 1 neuron count, hidden layer 2 neuron cout, ..., hidden layer n neuron count, output layer count
 
+For example, the example above would be:
+3, 4, 5, 2
