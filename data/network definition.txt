@@ -1,0 +1,4 @@
+//Format is:
+//Input Count, Hidden Layer 1 Neuron Count, Hidden Layer 2 Neuron Count, ..., Output Count
+
+2, 2, 1
