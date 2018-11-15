@@ -4,7 +4,7 @@ This is a simple, somewhat generalized system for creating multilayer perceptron
 
 To get started you'll need to know the format of network definition files, training data files, and data files.
 
-Before that, you'll want to know that you can use comments and empty lines in all of these file types.
+Before that, you'll want to know that you can use comments and empty lines in all of these file types.  Spaces can be used for padding and won't change how these files are parsed.
 
 Comments need to be a line beginning with:
 ```
