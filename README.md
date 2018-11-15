@@ -4,6 +4,13 @@ This is a simple, somewhat generalized system for creating multilayer perceptron
 
 To get started you'll need to know the format of network definition files, training data files, and data files.
 
+Before that, you'll want to know that you can use comments and empty lines in all of these file types.
+
+Comments need to be a line beginning with:
+```
+//
+```
+
 # Network Definition Files
 Network definition files are what defines the layout of a network.  If you want to have 3 inputs, a hidden layer with 4 neurons, a hidden layer with 5 neurons, and an output layer with 2 outputs, this is the file you would put that information into.
 
