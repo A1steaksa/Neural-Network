@@ -1,6 +1,6 @@
 # Neural-Network
 
-This is a simple, somewhat generalized system for creating multilayer perceptron networks
+This is a simple, somewhat generalized system for creating multilayer perceptron networks.
 
 To get started you'll need to know the format of network definition files, training data files, and data files.
 
