@@ -22,8 +22,11 @@ Input 1, input 2, ..., input n, |, output 1, output 2, ..., output n
 
 For example, the XOR training file looks like:
 0, 0, |, 0
+
 0, 1, |, 1
+
 1, 0, |, 1
+
 0, 0, |, 0
 
 # Data Files
@@ -35,6 +38,9 @@ Input 1, input 2, ..., input n
 
 For example, an XOR data file might look like:
 0, 0
+
 0, 1
+
 1, 0
+
 0, 0
