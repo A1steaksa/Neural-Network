@@ -4,6 +4,9 @@ public class Util {
 	
 	public static float[] parseArgs( String args ) {
 		
+		//Remove whitespace
+		
+		
 		//Split the args by the comma delimiter
 		String[] splitArgs = args.split( "," );
 		
@@ -13,6 +16,11 @@ public class Util {
 		//Convert all of the arguments to floats and add them to the output array
 		for (int i = 0; i < splitArgs.length; i++) {
 			
+			//Error checking to avoid empty values
+			if( splitArgs[i].trim().length() == 0 ) {
+				continue;
+			}
+			
 			output[i] = Float.parseFloat( splitArgs[i].trim() );
 		}
 		
@@ -20,14 +28,33 @@ public class Util {
 		
 	}
 	
+	//Parses args and returns ints
+	//This is a bad convenience function
+	public static int[] parseArgsInt( String args ) {
+		
+		//Parse the args
+		float[] parsedArgs = parseArgs( args );
+		
+		int[] output = new int[parsedArgs.length];
+		
+		//Convert them to ints
+		for (int i = 0; i < parsedArgs.length; i++) {
+			output[i] = (int) parsedArgs[i];
+		}
+		
+		return output;
+		
+	}
+	
+	//Takes in a line of training data from a file and returns the values as two tables of floats
+	//output[0] is the inputs
+	//output[1] is the outputs
 	public static float[][] parseTraining( String args ){
 		
 		float[][] output = new float[2][];
 		
 		//Split the training data into inputs and outputs
-		String[] splitArgs = args.split( "|" );
-		
-		System.out.println( splitArgs[0] );
+		String[] splitArgs = args.split( "\\|" );
 		
 		//Some basic error checking
 		if( splitArgs.length != 2 ) {
@@ -40,21 +67,14 @@ public class Util {
 		splitArgs[1] = splitArgs[1].trim();
 		
 		//Split the input data into an array
-		String[] inputStrings = splitArgs[0].split( "," );
+		float[] inputValues =  parseArgs( splitArgs[0] );
 		
 		//Split the output data into an array
-		String[] outputStrings = splitArgs[1].split( "," );
+		float[] outputValues =  parseArgs( splitArgs[1] );
 		
-		
-		for (int i = 0; i < inputStrings.length; i++) {
-			System.out.println( inputStrings[i] );
-		}
-		
-		System.out.println( "------" );
-		
-		for (int i = 0; i < outputStrings.length; i++) {
-			System.out.println( outputStrings[i] );
-		}
+		//Package inputs and outputs for return
+		output[0] = inputValues;
+		output[1] = outputValues;
 		
 		return output;
 		

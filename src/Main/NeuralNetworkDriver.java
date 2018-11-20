@@ -9,6 +9,8 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import Network.Network;
+
 public class NeuralNetworkDriver {
 	
 	public static void main( String[] args ) throws FileNotFoundException {
@@ -63,10 +65,17 @@ public class NeuralNetworkDriver {
 	    	
 	    }
 	    
-	    Util.parseArgs( line );
+	    //Create a new network from the specifications we just read from the net file
+	    int[] networkArgs = Util.parseArgsInt( line );
+	    Network net = new Network( networkArgs );
 	    
 	    
+	    //Check it
+	    //System.out.println( "Input Size: " + net.inputLayer.inputCount );
+	    //System.out.println( "Hidden Layer Count: " + net.inputLayer.inputCount );
 
+	    /*
+	    
 		//Select a training data file
 		chooser = new JFileChooser();
 	    filter = new FileNameExtensionFilter( "Training Data Files", "trn" );
@@ -91,7 +100,7 @@ public class NeuralNetworkDriver {
 	    
 	    line = "";
 	    
-	    //We need to read the entire file
+	    //We need to read the entire file to get all the training data
 	    while( scanner.hasNextLine() ) {
 	    	
 	    	//Read in the next line
@@ -105,12 +114,10 @@ public class NeuralNetworkDriver {
 	    		continue;
 	    	}
 	    	
-	    	Util.parseTraining( line );
-	    	
-	    	//If this is our content line, we can stop
-	    	break;
+	    	float[][] parsedLine =  Util.parseTraining( line );
 	    	
 	    }
+	    */
 		
 	}
 	
