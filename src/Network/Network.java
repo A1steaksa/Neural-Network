@@ -25,12 +25,27 @@ public class Network {
 			int index = i - 1;
 			
 			//Create a new hidden layer with the size from the args
-			hiddenLayers[index] = new HiddenLayer( args[i] );
+			hiddenLayers[index] = new HiddenLayer( this, args[i], index );
 			
 		}
 		
 		//Create the output layer
 		outputLayer = new OutputLayer( args[ args.length - 1 ] );
+		
+	}
+	
+	//Initializes any values in the network that ned to be initialized
+	public void init() {
+		
+		//Initialize all layers
+		
+		inputLayer.init();
+		
+		for (int i = 0; i < hiddenLayers.length; i++) {
+			hiddenLayers[i].init();
+		}
+		
+		outputLayer.init();
 		
 	}
 }

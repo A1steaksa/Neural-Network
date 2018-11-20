@@ -9,5 +9,9 @@ public class OutputLayer {
 		this.outputCount = outputCount;
 		
 	}
+	
+	public void init() {
+		
+	}
 
 }

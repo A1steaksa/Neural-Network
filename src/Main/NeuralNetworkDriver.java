@@ -13,6 +13,8 @@ import Network.Network;
 
 public class NeuralNetworkDriver {
 	
+	public static boolean debug = true;
+	
 	public static void main( String[] args ) throws FileNotFoundException {
 		
 		//Try to make it look more like windows
@@ -37,8 +39,7 @@ public class NeuralNetworkDriver {
 	    
 	    //If we didn't select a file, give an error and close
 	    if( netDef == null ) {
-	    	JOptionPane.showMessageDialog(null, "You must select a network definition file before proceeding!" );
-	    	System.exit( 1 );
+	    	Util.error( "You must select a network definition file before proceeding!" );
 	    }
 	    
 	    //Begin parsing the network definition file
@@ -68,15 +69,16 @@ public class NeuralNetworkDriver {
 	    //Create a new network from the specifications we just read from the net file
 	    int[] networkArgs = Util.parseArgsInt( line );
 	    Network net = new Network( networkArgs );
+	    net.init();
 	    
-	    System.out.println( "Input count: " + net.inputLayer.inputCount );
-	    System.out.println( "Hidden layer count: " + net.hiddenLayers.length );
+	    Util.print( "Input count: " + net.inputLayer.inputCount );
+	    Util.print( "Hidden layer count: " + net.hiddenLayers.length );
 	    for (int i = 0; i < net.hiddenLayers.length; i++) {
 			
-	    	System.out.println( "\t Hidden layer " + i + " neuron count: " + net.hiddenLayers[i].neuronCount );
+	    	Util.print( "\t Hidden layer " + i + " neuron count: " + net.hiddenLayers[i].getNeuronCount() );
 	    	
 		}
-	    System.out.println( "Output count: " + net.outputLayer.outputCount );
+	    Util.print( "Output count: " + net.outputLayer.outputCount );
 	    
 
 	    /*

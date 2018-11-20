@@ -1,11 +1,12 @@
 package Main;
 
+import javax.swing.JOptionPane;
+
 public class Util {
 	
 	public static float[] parseArgs( String args ) {
 		
 		//Remove whitespace
-		
 		
 		//Split the args by the comma delimiter
 		String[] splitArgs = args.split( "," );
@@ -58,7 +59,7 @@ public class Util {
 		
 		//Some basic error checking
 		if( splitArgs.length != 2 ) {
-			System.out.println( "Error: training data is malformed" );
+			Util.print( "Error: training data is malformed" );
 			return null;
 		}
 		
@@ -78,6 +79,24 @@ public class Util {
 		
 		return output;
 		
+	}
+	
+	//Debug printing
+	public static void print( Object x ) {
+		//Only debug if we're debugging
+		if( NeuralNetworkDriver.debug ) {
+			System.out.println( x );
+		}
+	}
+	
+	//Show an error window and exit
+	public static void error( String errorText ) {
+		
+		JOptionPane.showMessageDialog( null, errorText, "Error!", JOptionPane.ERROR_MESSAGE );
+		
+		System.err.println( "ERROR: " + errorText );
+		
+		System.exit( 1 );
 	}
 	
 }
