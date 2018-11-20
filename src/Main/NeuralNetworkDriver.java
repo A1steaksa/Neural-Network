@@ -69,10 +69,15 @@ public class NeuralNetworkDriver {
 	    int[] networkArgs = Util.parseArgsInt( line );
 	    Network net = new Network( networkArgs );
 	    
+	    System.out.println( "Input count: " + net.inputLayer.inputCount );
+	    System.out.println( "Hidden layer count: " + net.hiddenLayers.length );
+	    for (int i = 0; i < net.hiddenLayers.length; i++) {
+			
+	    	System.out.println( "\t Hidden layer " + i + " neuron count: " + net.hiddenLayers[i].neuronCount );
+	    	
+		}
+	    System.out.println( "Output count: " + net.outputLayer.outputCount );
 	    
-	    //Check it
-	    //System.out.println( "Input Size: " + net.inputLayer.inputCount );
-	    //System.out.println( "Hidden Layer Count: " + net.inputLayer.inputCount );
 
 	    /*
 	    
