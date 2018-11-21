@@ -12,6 +12,8 @@ public class HiddenLayer {
 	
 	private int inputCount;
 	
+	private Neuron[] neurons;
+	
 	public HiddenLayer( Network parent, int neuronCount, int layerNumber ) {
 		this.neuronCount = neuronCount;
 		this.parent = parent;
@@ -29,8 +31,26 @@ public class HiddenLayer {
 			inputCount = parent.hiddenLayers[layerNumber - 1].neuronCount;
 		}
 		
-		Util.print( inputCount );
+		//Create this layer's neurons
+		neurons = new Neuron[ neuronCount ];
 		
+		for (int i = 0; i < neurons.length; i++) {
+			neurons[ i ] = new Neuron( this );
+		}
+		
+		//Now that all neurons are made, initialize them
+		for (int i = 0; i < neuronCount; i++) {
+			neurons[ i ].init();
+			
+			System.out.println( neurons[ i ].getWeight() );
+			
+		}
+		
+	}
+	
+	//Getter for input count
+	public int getInputCount(){
+		return inputCount;
 	}
 	
 	//Getter for neuronCount

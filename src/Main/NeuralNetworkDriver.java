@@ -71,14 +71,14 @@ public class NeuralNetworkDriver {
 	    Network net = new Network( networkArgs );
 	    net.init();
 	    
-	    Util.print( "Input count: " + net.inputLayer.inputCount );
-	    Util.print( "Hidden layer count: " + net.hiddenLayers.length );
-	    for (int i = 0; i < net.hiddenLayers.length; i++) {
-			
-	    	Util.print( "\t Hidden layer " + i + " neuron count: " + net.hiddenLayers[i].getNeuronCount() );
-	    	
-		}
-	    Util.print( "Output count: " + net.outputLayer.outputCount );
+//	    Util.print( "Input count: " + net.inputLayer.inputCount );
+//	    Util.print( "Hidden layer count: " + net.hiddenLayers.length );
+//	    for (int i = 0; i < net.hiddenLayers.length; i++) {
+//			
+//	    	Util.print( "\t Hidden layer " + i + " neuron count: " + net.hiddenLayers[i].getNeuronCount() );
+//	    	
+//		}
+//	    Util.print( "Output count: " + net.outputLayer.outputCount );
 	    
 
 	    /*

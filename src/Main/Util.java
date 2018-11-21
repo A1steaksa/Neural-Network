@@ -99,4 +99,9 @@ public class Util {
 		System.exit( 1 );
 	}
 	
+	//Random number in a range
+	public static float randomRange( float min, float max ){
+		return (float) (min + Math.random() * (max - min));
+	}
+	
 }
