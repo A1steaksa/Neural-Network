@@ -74,6 +74,7 @@ public class NeuralNetworkDriver {
 	    net.init();
 	    
 	    //Step 2: Activation
+	    net.activate();
 	    
 	    //Step 3: Weight Training
 	    

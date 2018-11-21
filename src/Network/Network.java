@@ -1,5 +1,7 @@
 package Network;
 
+import java.util.Arrays;
+
 public class Network {
 	
 	private InputLayer inputLayer;
@@ -48,6 +50,19 @@ public class Network {
 		}
 		
 		outputLayer.init();
+		
+	}
+	
+	//Called to activate the network and calculate output for it
+	public void activate(){
+		
+		//Get outputs from every hidden layer in turn
+		for (int i = 0; i < hiddenLayers.length; i++) {
+			hiddenLayers[ i ].calculateOutputs();
+		}
+		
+		//Calculate the final output from the output layer
+		outputLayer.calculateFinalOutput();
 		
 	}
 	

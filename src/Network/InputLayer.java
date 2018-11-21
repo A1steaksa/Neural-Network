@@ -10,8 +10,6 @@ public class InputLayer {
 		
 		this.inputCount = inputCount;
 		
-		
-		
 	}
 
 	public void init() {

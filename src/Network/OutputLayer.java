@@ -2,7 +2,9 @@ package Network;
 
 public class OutputLayer {
 
-	public int outputCount;
+	private int outputCount;
+	
+	private float[] 
 	
 	public OutputLayer( int outputCount ) {
 		
@@ -12,6 +14,13 @@ public class OutputLayer {
 	
 	//Called to initialize this output layer
 	public void init() {
+		
+	}
+	
+	//Calculates the final output from the network
+	public float[] calculateFinalOutput(){
+		
+		//
 		
 	}
 
