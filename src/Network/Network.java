@@ -2,11 +2,13 @@ package Network;
 
 public class Network {
 	
-	public InputLayer inputLayer;
+	private InputLayer inputLayer;
 	
-	public HiddenLayer[] hiddenLayers;
+	private HiddenLayer[] hiddenLayers;
 	
-	public OutputLayer outputLayer;
+	private OutputLayer outputLayer;
+	
+	private int epoch = 0;
 	
 	//Args are in the format
 	//Input layer count, hidden layer 1 neuron count, hidden layer 2 neuron count, ..., hidden layer n neuron count, output layer count
@@ -34,7 +36,7 @@ public class Network {
 		
 	}
 	
-	//Initializes any values in the network that ned to be initialized
+	//Called to initialize this network
 	public void init() {
 		
 		//Initialize all layers
@@ -47,5 +49,15 @@ public class Network {
 		
 		outputLayer.init();
 		
+	}
+	
+	//Getter for input layer
+	public InputLayer getInputLayer(){
+		return inputLayer;
+	}
+	
+	//Getter for hidden layers
+	public HiddenLayer[] getHiddenLayers(){
+		return hiddenLayers;
 	}
 }

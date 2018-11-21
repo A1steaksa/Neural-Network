@@ -10,6 +10,7 @@ public class OutputLayer {
 		
 	}
 	
+	//Called to initialize this output layer
 	public void init() {
 		
 	}

@@ -69,7 +69,15 @@ public class NeuralNetworkDriver {
 	    //Create a new network from the specifications we just read from the net file
 	    int[] networkArgs = Util.parseArgsInt( line );
 	    Network net = new Network( networkArgs );
+	    
+	    //Step 1: Initialize
 	    net.init();
+	    
+	    //Step 2: Activation
+	    
+	    //Step 3: Weight Training
+	    
+	    //Step 4: Iteration
 	    
 //	    Util.print( "Input count: " + net.inputLayer.inputCount );
 //	    Util.print( "Hidden layer count: " + net.hiddenLayers.length );
