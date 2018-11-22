@@ -34,7 +34,7 @@ public class Network {
 		}
 		
 		//Create the output layer
-		outputLayer = new OutputLayer( args[ args.length - 1 ] );
+		outputLayer = new OutputLayer( this, args[ args.length - 1 ] );
 		
 	}
 	

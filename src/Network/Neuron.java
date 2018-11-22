@@ -4,19 +4,23 @@ import Main.Util;
 
 public class Neuron {
 
-	private int inputCount;
+	protected int inputCount;
 	
-	private int neuronNumber;
+	protected int neuronNumber;
 	
-	private float activationThreshold;
+	protected float activationThreshold;
 	
-	private HiddenLayer parent;
+	protected HiddenLayer parent;
 	
-	private float[] weights;
+	protected float[] weights;
 	
 	public Neuron( HiddenLayer parent, int neuronNumber ){
 		this.parent = parent;
 		this.neuronNumber = neuronNumber;
+	}
+	
+	public Neuron(){
+		
 	}
 	
 	//Called to initialize this neuron
