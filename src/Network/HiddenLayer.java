@@ -71,6 +71,16 @@ public class HiddenLayer {
 		}
 		
 	}
+	
+	//Updates this layer's weights
+	public void updateWeights(){
+		
+		//Update every neuron's weights
+		for (int i = 0; i < neurons.length; i++) {
+			neurons[ i ].updateWeights();
+		}
+		
+	}
 
 	//Getter for input count
 	public int getInputCount(){
@@ -95,6 +105,16 @@ public class HiddenLayer {
 	//Getter for outputs
 	public float[] getOutputs(){
 		return outputs;
+	}
+	
+	//Getter for parent
+	public Network getParent(){
+		return parent;
+	}
+	
+	//Getter for neurons
+	public Neuron[] getNeurons(){
+		return neurons;
 	}
 
 }

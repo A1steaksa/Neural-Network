@@ -4,7 +4,9 @@ import Main.Util;
 
 public class OutputNeuron extends Neuron{
 	
-	OutputLayer parent;
+	private OutputLayer parent;
+	
+	private float output;
 	
 	public OutputNeuron( OutputLayer parent ){
 		
@@ -42,7 +44,42 @@ public class OutputNeuron extends Neuron{
 		}
 		
 		//Run that sum through our activation function
-		return activationFunction( sum );
+		output = activationFunction( sum );
+		
+		return output;
+	}
+	
+	//Updates the weights of this output neuron
+	public void updateWeights( float expectedOutput ){
+		
+		//Get the error gradient
+		float errorGradient = getErrorGradient( expectedOutput );
+		
+		//Update every input's weight
+		for (int i = 0; i < parent.getInputCount(); i++) {
+			
+			//Weight change amount is learningRate * input * errorGradient
+			float weightChange = learningRate * parent.getInput( i ) * errorGradient;
+			
+			//Update this weight
+			weights[ i ] += weightChange;
+			
+		}
+		
+	}
+	
+	//Calculates the error for this output neuron
+	public float getError( float expectedOutput ){
+		
+		//Error is expected output - actual output
+		return output - expectedOutput;
+	}
+	
+	//Calculates the error gradient for this output neuron
+	public float getErrorGradient( float expectedOutput ){
+		
+		//Error gradient is output * ( 1 - output ) * error
+		return output * ( 1 - output ) * getError( expectedOutput );
 		
 	}
 	

@@ -40,6 +40,17 @@ public class OutputLayer {
 		}
 
 	}
+	
+	//Updates the weights of all output neurons
+	public void updateWeights( float[] trainingData ){
+		
+		//Update each output neuron
+		for (int i = 0; i < outputNeurons.length; i++) {
+			//Pass in the expected output for that neuron
+			outputNeurons[ i ].updateWeights( trainingData[ i ] );
+		}
+		
+	}
 
 	//Calculates the final output from the network
 	public float[] calculateFinalOutput(){
@@ -68,6 +79,16 @@ public class OutputLayer {
 	//Getter for input count
 	public int getInputCount(){
 		return inputCount;
+	}
+	
+	//Getter for output neuron count
+	public int getOutputNeuronCount(){
+		return outputNeurons.length;
+	}
+	
+	//Getter for output neurons
+	public OutputNeuron[] getOutputNeurons(){
+		return outputNeurons;
 	}
 
 }

@@ -56,16 +56,10 @@ public class Network {
 	}
 	
 	//Called to activate the network and calculate output for it
-	public void activate( float[][] trainingData ){
-		
-		//Our expected output
-		float[] expectedOutput = trainingData[1];
-		
-		//Our training input
-		float[] trainingInput = trainingData[0];
+	public void activate( float[] trainingData ){
 		
 		//Set up the initial inputs
-		inputLayer.setInputs( trainingInput );
+		inputLayer.setInputs( trainingData );
 		
 		//Get outputs from every hidden layer in turn
 		for (int i = 0; i < hiddenLayers.length; i++) {
@@ -81,6 +75,19 @@ public class Network {
 		
 	}
 	
+	//Called to train weights after the network has activated
+	public void weightTrain( float[] expectedOutputs ){
+		
+		//Update the output layer's weights
+		outputLayer.updateWeights( expectedOutputs );
+		
+		//Begin updating the weights on the hidden layers from back to front
+		for ( int i = hiddenLayers.length - 1; i >= 0; i-- ) {
+			hiddenLayers[ i ].updateWeights();
+		}
+		
+	}
+	
 	//Getter for input layer
 	public InputLayer getInputLayer(){
 		return inputLayer;
@@ -89,6 +96,11 @@ public class Network {
 	//Getter for hidden layers
 	public HiddenLayer[] getHiddenLayers(){
 		return hiddenLayers;
+	}
+	
+	//Getter for output layers
+	public OutputLayer getOutputLayer(){
+		return outputLayer;
 	}
 	
 	public void addEpoch(){

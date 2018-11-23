@@ -122,11 +122,14 @@ public class NeuralNetworkDriver {
 
 			float[][] parsedLine =  Util.parseTraining( trainingLine );
 
+			float[] trainingInput = parsedLine[0];
+			float[] expectedOutput = parsedLine[1];
+			
 			//Step 2: Activation
-			net.activate( parsedLine );
+			net.activate( trainingInput );
 
 			//Step 3: Weight Training
-			
+			net.weightTrain( expectedOutput );
 
 			//Step 4: Iteration
 			net.addEpoch();
