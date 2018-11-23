@@ -53,6 +53,9 @@ public class HiddenLayer {
 	//Calculates the outputs for this hidden layer
 	public void calculateOutputs(){
 
+		//Create the outputs array
+		outputs = new float[ neurons.length ];
+		
 		//Get this layer's inputs
 		//If this is the first layer, we get our input from the input layer
 		if( layerNumber == 0 ){

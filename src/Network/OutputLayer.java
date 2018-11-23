@@ -1,5 +1,7 @@
 package Network;
 
+import Main.Util;
+
 public class OutputLayer {
 
 	private int inputCount;
@@ -26,6 +28,8 @@ public class OutputLayer {
 		inputCount = parent.getHiddenLayers()[ parent.getHiddenLayers().length - 1 ].getNeuronCount();
 
 		//Create our output neurons
+		outputNeurons = new OutputNeuron[ outputCount ];
+		
 		for (int i = 0; i < outputCount; i++) {
 			outputNeurons[ i ] = new OutputNeuron( this );
 		}
@@ -40,11 +44,14 @@ public class OutputLayer {
 	//Calculates the final output from the network
 	public float[] calculateFinalOutput(){
 
+		//Create the outputs array
+		outputs = new float[ outputNeurons.length ];
+		
 		//First, we need to get all of our inputs from the last hidden layer
 		inputs = parent.getHiddenLayers()[ parent.getHiddenLayers().length - 1 ].getOutputs();
 
 		//Then we get output from each output neuron and store them in our outputs array
-		for (int i = 0; i < inputs.length; i++) {
+		for (int i = 0; i < outputCount; i++) {
 			outputs[ i ] = outputNeurons[ i ].calculateOutput();
 		}
 		

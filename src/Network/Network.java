@@ -2,6 +2,8 @@ package Network;
 
 import java.util.Arrays;
 
+import Main.Util;
+
 public class Network {
 	
 	private InputLayer inputLayer;
@@ -54,7 +56,16 @@ public class Network {
 	}
 	
 	//Called to activate the network and calculate output for it
-	public void activate(){
+	public void activate( float[][] trainingData ){
+		
+		//Our expected output
+		float[] expectedOutput = trainingData[1];
+		
+		//Our training input
+		float[] trainingInput = trainingData[0];
+		
+		//Set up the initial inputs
+		inputLayer.setInputs( trainingInput );
 		
 		//Get outputs from every hidden layer in turn
 		for (int i = 0; i < hiddenLayers.length; i++) {
@@ -62,7 +73,11 @@ public class Network {
 		}
 		
 		//Calculate the final output from the output layer
-		outputLayer.calculateFinalOutput();
+		float[] outputs = outputLayer.calculateFinalOutput();
+		
+		for (int i = 0; i < outputs.length; i++) {
+			Util.print( outputs [ i ] );
+		}
 		
 	}
 	
@@ -74,5 +89,13 @@ public class Network {
 	//Getter for hidden layers
 	public HiddenLayer[] getHiddenLayers(){
 		return hiddenLayers;
+	}
+	
+	public void addEpoch(){
+		epoch++;
+	}
+	
+	public int getEpoch(){
+		return epoch;
 	}
 }

@@ -6,8 +6,9 @@ public class Util {
 	
 	public static float[] parseArgs( String args ) {
 		
-		//Remove whitespace
-		
+		//Remove spaces
+		args = args.replace( " " , "" );
+				
 		//Split the args by the comma delimiter
 		String[] splitArgs = args.split( "," );
 		
@@ -33,6 +34,9 @@ public class Util {
 	//This is a bad convenience function
 	public static int[] parseArgsInt( String args ) {
 		
+		//Remove spaces
+		args = args.replace( " " , "" );
+		
 		//Parse the args
 		float[] parsedArgs = parseArgs( args );
 		
@@ -53,6 +57,9 @@ public class Util {
 	public static float[][] parseTraining( String args ){
 		
 		float[][] output = new float[2][];
+		
+		//Remove spaces
+		args = args.replace( " " , "" );
 		
 		//Split the training data into inputs and outputs
 		String[] splitArgs = args.split( "\\|" );

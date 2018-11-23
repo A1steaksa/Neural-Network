@@ -17,6 +17,8 @@ public class Neuron {
 	public Neuron( HiddenLayer parent, int neuronNumber ){
 		this.parent = parent;
 		this.neuronNumber = neuronNumber;
+		
+		Util.print( "constructor " + this );
 	}
 	
 	public Neuron(){
