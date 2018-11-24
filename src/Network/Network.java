@@ -56,7 +56,7 @@ public class Network {
 	}
 	
 	//Called to activate the network and calculate output for it
-	public void activate( float[] trainingData ){
+	public float[] activate( float[] trainingData ){
 		
 		//Set up the initial inputs
 		inputLayer.setInputs( trainingData );
@@ -69,9 +69,7 @@ public class Network {
 		//Calculate the final output from the output layer
 		float[] outputs = outputLayer.calculateFinalOutput();
 		
-		for (int i = 0; i < outputs.length; i++) {
-			Util.print( outputs [ i ] );
-		}
+		return outputs;
 		
 	}
 	

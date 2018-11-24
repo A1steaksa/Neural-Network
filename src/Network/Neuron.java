@@ -16,7 +16,7 @@ public class Neuron {
 	
 	protected float learningRate;
 	
-	public Neuron( HiddenLayer parent, int neuronNumber ){
+	public Neuron( HiddenLayer parent, int neuronNumber, float learningRate ){
 		this.parent = parent;
 		this.neuronNumber = neuronNumber;
 		this.learningRate = learningRate;
@@ -40,13 +40,26 @@ public class Neuron {
 		
 		//Set up weights
 		weights = new float[ inputCount ];
-		for (int i = 0; i < weights.length; i++) {
-			setWeight( i, Util.randomRange( - 2.4f / (float) inputCount, 2.4f / (float) inputCount ) );
-			Util.print( "Hidden Layer #" + this.parent.getLayerNumber() + ", Neuron #" + neuronNumber + ", Input #" + i +", Weight: " + getWeight( i ) );
+		
+		if( neuronNumber == 0 ){
+			weights[ 0 ] = 0.5f;
+			weights[ 1 ] = 0.4f;
+			
+			activationThreshold = 0.8f;
+		}else{
+			weights[ 0 ] = 0.9f;
+			weights[ 1 ] = 1.0f;
+			
+			activationThreshold = -0.1f;
 		}
 		
+//		for (int i = 0; i < weights.length; i++) {
+//			setWeight( i, Util.randomRange( - 2.4f / (float) inputCount, 2.4f / (float) inputCount ) );
+//			Util.print( "Hidden Layer #" + this.parent.getLayerNumber() + ", Neuron #" + neuronNumber + ", Input #" + i +", Weight: " + getWeight( i ) );
+//		}
+		
 		//Generate an activation threshold
-		activationThreshold = Util.randomRange( - 2.4f / (float) inputCount, 2.4f / (float) inputCount );
+//		activationThreshold = Util.randomRange( - 2.4f / (float) inputCount, 2.4f / (float) inputCount );
 		
 	}
 	
@@ -63,11 +76,13 @@ public class Neuron {
 		float sum = 0;
 		
 		for (int i = 0; i < inputCount; i++) {
+			
 			sum += parent.getInput( i ) * weights[ i ];
 		}
 		
 		//Subtract our activation threshold from the total
 		sum -= activationThreshold;
+		
 		
 		//Run the final sum through our activation function
 		float output = activationFunction( sum );
@@ -109,10 +124,6 @@ public class Neuron {
 		
 		//If the next layer is the output layer, we need to treat that a little bit differently
 		
-		Util.print( "1 " + parent.getLayerNumber() );
-		Util.print( "2 " + parent.getParent() );
-		Util.print( "3 " + parent.getParent().getHiddenLayers() );
-		
 		if( parent.getLayerNumber() == parent.getParent().getHiddenLayers().length - 1 ){
 			
 			//Get the output layer
@@ -124,7 +135,13 @@ public class Neuron {
 				
 				//Get the error gradient times the weight and add it to our sum
 				//We can find the weight by looking up our neuron number in the weights array of the neuron in the next layer
-				sum += outputLayer.getOutputNeurons()[ i ].getErrorGradient() * outputLayer.getOutputNeurons()[ i ].getWeight( neuronNumber );
+				
+				//Get the expected output for this output neuron from the training data
+				float expectedOutput = parent.getParent().getOutputLayer().getExpectedOutputs()[ i ];
+				float gradient = outputLayer.getOutputNeurons()[ i ].getErrorGradient( expectedOutput );
+				float weight = outputLayer.getOutputNeurons()[ i ].getWeight( neuronNumber );
+				
+				sum += gradient * weight;
 				
 			}
 			

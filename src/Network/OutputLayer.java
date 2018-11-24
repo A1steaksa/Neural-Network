@@ -12,9 +12,11 @@ public class OutputLayer {
 
 	private OutputNeuron[] outputNeurons;
 
-	float[] inputs;
+	private float[] inputs;
 	
-	float[] outputs;
+	private float[] outputs;
+	
+	private float[] expectedOutputs;
 
 	public OutputLayer( Network parent, int outputCount ) {
 		this.outputCount = outputCount;
@@ -31,7 +33,7 @@ public class OutputLayer {
 		outputNeurons = new OutputNeuron[ outputCount ];
 		
 		for (int i = 0; i < outputCount; i++) {
-			outputNeurons[ i ] = new OutputNeuron( this );
+			outputNeurons[ i ] = new OutputNeuron( this, 0.2f );
 		}
 
 		//Init them
@@ -43,6 +45,9 @@ public class OutputLayer {
 	
 	//Updates the weights of all output neurons
 	public void updateWeights( float[] trainingData ){
+		
+		//Cache the training data for later
+		expectedOutputs = trainingData;
 		
 		//Update each output neuron
 		for (int i = 0; i < outputNeurons.length; i++) {
@@ -89,6 +94,11 @@ public class OutputLayer {
 	//Getter for output neurons
 	public OutputNeuron[] getOutputNeurons(){
 		return outputNeurons;
+	}
+	
+	//Getter for expected outputs
+	public float[] getExpectedOutputs(){
+		return expectedOutputs;
 	}
 
 }

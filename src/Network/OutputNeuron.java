@@ -8,9 +8,10 @@ public class OutputNeuron extends Neuron{
 	
 	private float output;
 	
-	public OutputNeuron( OutputLayer parent ){
+	public OutputNeuron( OutputLayer parent, float learningRate ){
 		
 		this.parent = parent;
+		this.learningRate = learningRate;
 		
 	}
 	
@@ -23,13 +24,18 @@ public class OutputNeuron extends Neuron{
 		
 		//Set up weights
 		weights = new float[ inputCount ];
-		for (int i = 0; i < weights.length; i++) {
-			setWeight( i, Util.randomRange( - 2.4f / (float) inputCount, 2.4f / (float) inputCount ) );
-			Util.print( "Output Layer Neuron #" + neuronNumber + ", Input #" + i +", Weight: " + getWeight( i ) );
-		}
+//		for (int i = 0; i < weights.length; i++) {
+//			setWeight( i, Util.randomRange( - 2.4f / (float) inputCount, 2.4f / (float) inputCount ) );
+//			Util.print( "Output Layer Neuron #" + neuronNumber + ", Input #" + i +", Weight: " + getWeight( i ) );
+//		}
+		
+		weights[ 0 ] = -1.2f;
+		weights[ 1 ] = 1.1f;
+		activationThreshold = 0.3f;
+		
 		
 		//Generate an activation threshold
-		activationThreshold = Util.randomRange( - 2.4f / (float) inputCount, 2.4f / (float) inputCount );
+//		activationThreshold = Util.randomRange( - 2.4f / (float) inputCount, 2.4f / (float) inputCount );
 		
 	}
 	
@@ -40,8 +46,12 @@ public class OutputNeuron extends Neuron{
 		float sum = 0;
 		for (int i = 0; i < parent.getInputCount(); i++) {
 			//Take this input, times its weight, minus our activation threshold
-			sum += parent.getInput( i ) * weights[ i ] - activationThreshold;	
+			sum += parent.getInput( i ) * weights[ i ];
+			
 		}
+		
+		//Subtract the activation threshold
+		sum -= activationThreshold;
 		
 		//Run that sum through our activation function
 		output = activationFunction( sum );

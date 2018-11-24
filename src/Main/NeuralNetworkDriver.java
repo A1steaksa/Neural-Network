@@ -2,6 +2,7 @@ package Main;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.swing.JFileChooser;
@@ -28,7 +29,7 @@ public class NeuralNetworkDriver {
 		JFileChooser chooser = new JFileChooser();
 		FileNameExtensionFilter filter = new FileNameExtensionFilter( "Network Definition Files", "net" );
 		chooser.setFileFilter(filter);
-		chooser.setCurrentDirectory( new File( System.getProperty("user.dir") ) );
+		chooser.setCurrentDirectory( new File( System.getProperty("user.dir") + "/data" ) );
 		int returnVal = chooser.showOpenDialog( null );
 
 		//Get the file
@@ -86,7 +87,7 @@ public class NeuralNetworkDriver {
 		chooser = new JFileChooser();
 		filter = new FileNameExtensionFilter( "Training Data Files", "trn" );
 		chooser.setFileFilter(filter);
-		chooser.setCurrentDirectory( new File( System.getProperty("user.dir") ) );
+		chooser.setCurrentDirectory( new File( System.getProperty("user.dir") + "/data/training" ) );
 		returnVal = chooser.showOpenDialog( null );
 
 		//Get the file
@@ -106,6 +107,8 @@ public class NeuralNetworkDriver {
 
 		String trainingLine = "";
 
+		ArrayList<float[][]> trainingDataArrayList = new ArrayList<float[][]>();
+		
 		//We need to read the entire file to get all the training data
 		while( scanner.hasNextLine() ) {
 
@@ -120,24 +123,46 @@ public class NeuralNetworkDriver {
 				continue;
 			}
 
+			//Parse the line
 			float[][] parsedLine =  Util.parseTraining( trainingLine );
-
-			float[] trainingInput = parsedLine[0];
-			float[] expectedOutput = parsedLine[1];
 			
-			//Step 2: Activation
-			net.activate( trainingInput );
-
-			//Step 3: Weight Training
-			net.weightTrain( expectedOutput );
-
-			//Step 4: Iteration
-			net.addEpoch();
-			
-			//For now only use the first training line
-			break;
+			//Save the training data into the training ArrayList
+			trainingDataArrayList.add( parsedLine );
 			
 		}
+		
+		//Begin training on this data for N iterations
+		
+		for (int i = 0; i < 1; i++) {
+			
+			Util.print( "Starting Epoch: " + net.getEpoch() );
+			
+			for (int j = 0; j < trainingDataArrayList.size(); j++) {
+				
+				float[][] trainingData = trainingDataArrayList.get( j );
+				
+				Util.print( "\tTraining Data set: " + j );
+				
+				float[] trainingInput = trainingData[0];
+				float[] expectedOutput = trainingData[1];
+				
+				//Step 2: Activation
+				float[] outputs = net.activate( trainingInput );
+
+				for (int k = 0; k < outputs.length; k++) {
+					Util.print( "\t\tOutput " + k + ": Expected " + expectedOutput[ k ] + " Got " + outputs[ k ] );
+				}
+				
+				//Step 3: Weight Training
+				net.weightTrain( expectedOutput );
+				
+			}
+			
+			//Step 4: Iteration
+			net.addEpoch();
+		}
+		
+		
 		
 		
 
