@@ -12,7 +12,7 @@ public class Network {
 	
 	private OutputLayer outputLayer;
 	
-	private int epoch = 0;
+	private long epoch = 0;
 	
 	//Args are in the format
 	//Input layer count, hidden layer 1 neuron count, hidden layer 2 neuron count, ..., hidden layer n neuron count, output layer count
@@ -123,7 +123,7 @@ public class Network {
 		epoch++;
 	}
 	
-	public int getEpoch(){
+	public long getEpoch(){
 		return epoch;
 	}
 }

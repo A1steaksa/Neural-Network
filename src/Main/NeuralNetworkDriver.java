@@ -3,6 +3,7 @@ package Main;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 import javax.swing.JFileChooser;
@@ -136,6 +137,12 @@ public class NeuralNetworkDriver {
 		
 		while( sumOfErrors > 0.001f ){
 			
+			if( net.getEpoch() % 10000 == 0 ){
+				debug = true;
+			}else{
+				debug = false;
+			}
+			
 			Util.print( "Starting Epoch: " + net.getEpoch() );
 			
 			for (int j = 0; j < trainingDataArrayList.size(); j++) {
@@ -167,6 +174,9 @@ public class NeuralNetworkDriver {
 			
 			//Step 4: Iteration
 			net.addEpoch();
+			
+			//Shuffle training data
+			Collections.shuffle( trainingDataArrayList );
 		}
 		
 		

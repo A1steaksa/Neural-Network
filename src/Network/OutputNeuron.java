@@ -24,18 +24,18 @@ public class OutputNeuron extends Neuron{
 		
 		//Set up weights
 		weights = new float[ inputCount ];
-//		for (int i = 0; i < weights.length; i++) {
-//			setWeight( i, Util.randomRange( - 2.4f / (float) inputCount, 2.4f / (float) inputCount ) );
-//			Util.print( "Output Layer Neuron #" + neuronNumber + ", Input #" + i +", Weight: " + getWeight( i ) );
-//		}
+		for (int i = 0; i < weights.length; i++) {
+			setWeight( i, Util.randomRange( - 2.4f / (float) inputCount, 2.4f / (float) inputCount ) );
+			Util.print( "Output Layer Neuron #" + neuronNumber + ", Input #" + i +", Weight: " + getWeight( i ) );
+		}
 		
-		weights[ 0 ] = -1.2f;
-		weights[ 1 ] = 1.1f;
-		activationThreshold = 0.3f;
+//		weights[ 0 ] = -1.2f;
+//		weights[ 1 ] = 1.1f;
+//		activationThreshold = 0.3f;
 		
 		
 		//Generate an activation threshold
-//		activationThreshold = Util.randomRange( - 2.4f / (float) inputCount, 2.4f / (float) inputCount );
+		activationThreshold = Util.randomRange( - 2.4f / (float) inputCount, 2.4f / (float) inputCount );
 		
 	}
 	

@@ -37,25 +37,25 @@ public class Neuron {
 		//Set up weights
 		weights = new float[ inputCount ];
 		
-		if( neuronNumber == 0 ){
-			weights[ 0 ] = 0.5f;
-			weights[ 1 ] = 0.4f;
-			
-			activationThreshold = 0.8f;
-		}else{
-			weights[ 0 ] = 0.9f;
-			weights[ 1 ] = 1.0f;
-			
-			activationThreshold = -0.1f;
-		}
-		
-//		for (int i = 0; i < weights.length; i++) {
-//			setWeight( i, Util.randomRange( - 2.4f / (float) inputCount, 2.4f / (float) inputCount ) );
-//			Util.print( "Hidden Layer #" + this.parent.getLayerNumber() + ", Neuron #" + neuronNumber + ", Input #" + i +", Weight: " + getWeight( i ) );
+//		if( neuronNumber == 0 ){
+//			weights[ 0 ] = 0.5f;
+//			weights[ 1 ] = 0.4f;
+//			
+//			activationThreshold = 0.8f;
+//		}else{
+//			weights[ 0 ] = 0.9f;
+//			weights[ 1 ] = 1.0f;
+//			
+//			activationThreshold = -0.1f;
 //		}
 		
+		for (int i = 0; i < weights.length; i++) {
+			setWeight( i, Util.randomRange( - 2.4f / (float) inputCount, 2.4f / (float) inputCount ) );
+			Util.print( "Hidden Layer #" + this.parent.getLayerNumber() + ", Neuron #" + neuronNumber + ", Input #" + i +", Weight: " + getWeight( i ) );
+		}
+		
 		//Generate an activation threshold
-//		activationThreshold = Util.randomRange( - 2.4f / (float) inputCount, 2.4f / (float) inputCount );
+		activationThreshold = Util.randomRange( - 2.4f / (float) inputCount, 2.4f / (float) inputCount );
 		
 	}
 	
