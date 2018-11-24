@@ -82,14 +82,18 @@ public class OutputNeuron extends Neuron{
 	public float getError( float expectedOutput ){
 		
 		//Error is expected output - actual output
-		return output - expectedOutput;
+		float error = expectedOutput - output;
+		
+		return error;
 	}
 	
 	//Calculates the error gradient for this output neuron
 	public float getErrorGradient( float expectedOutput ){
 		
+		float gradient = output * ( 1 - output ) * getError( expectedOutput );
+		
 		//Error gradient is output * ( 1 - output ) * error
-		return output * ( 1 - output ) * getError( expectedOutput );
+		return gradient;
 		
 	}
 	

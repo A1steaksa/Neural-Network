@@ -86,6 +86,24 @@ public class Network {
 		
 	}
 	
+	//Calculates the sum of errors squared
+	public float getSumOfErrors(){
+		
+		float sum = 0f;
+		
+		//Sum of errors
+		for (int i = 0; i < outputLayer.getOutputNeuronCount(); i++) {
+			
+			sum += outputLayer.getOutputNeurons()[ i ].getError( outputLayer.getExpectedOutputs()[ i ] );
+			
+		}
+		
+		//Squared
+		sum = (float) Math.pow( sum, 2 );
+		
+		return sum;
+	}
+	
 	//Getter for input layer
 	public InputLayer getInputLayer(){
 		return inputLayer;

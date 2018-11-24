@@ -40,7 +40,7 @@ public class HiddenLayer {
 		neurons = new Neuron[ neuronCount ];
 
 		for (int i = 0; i < neurons.length; i++) {
-			neurons[ i ] = new Neuron( this, i, 0.2f );
+			neurons[ i ] = new Neuron( this, i, 0.1f );
 		}
 
 		//Now that all neurons are made, initialize them

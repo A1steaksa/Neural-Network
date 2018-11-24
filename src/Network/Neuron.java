@@ -34,10 +34,6 @@ public class Neuron {
 		//Get input count
 		inputCount = parent.getInputCount();
 		
-		//Create a learning rate
-		//This is pulled from HW4 and is, as far as I know, completely arbitrary
-		learningRate = 0.2f;
-		
 		//Set up weights
 		weights = new float[ inputCount ];
 		
@@ -123,7 +119,6 @@ public class Neuron {
 		//Begin the summation
 		
 		//If the next layer is the output layer, we need to treat that a little bit differently
-		
 		if( parent.getLayerNumber() == parent.getParent().getHiddenLayers().length - 1 ){
 			
 			//Get the output layer
@@ -145,8 +140,10 @@ public class Neuron {
 				
 			}
 			
+			float gradient = firstPart * sum;
+			
 			//Calculate output which is the first part times the sum
-			return firstPart * sum;
+			return gradient;
 			
 		}else{
 			

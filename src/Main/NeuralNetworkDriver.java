@@ -132,8 +132,9 @@ public class NeuralNetworkDriver {
 		}
 		
 		//Begin training on this data for N iterations
+		float sumOfErrors = 1;
 		
-		for (int i = 0; i < 1; i++) {
+		while( sumOfErrors > 0.001f ){
 			
 			Util.print( "Starting Epoch: " + net.getEpoch() );
 			
@@ -155,6 +156,12 @@ public class NeuralNetworkDriver {
 				
 				//Step 3: Weight Training
 				net.weightTrain( expectedOutput );
+				
+				//Update the sum of errors with the largest error this epoch
+				float newSumOfErrors = net.getSumOfErrors();
+				if( newSumOfErrors > sumOfErrors ){
+					sumOfErrors = newSumOfErrors;
+				}
 				
 			}
 			

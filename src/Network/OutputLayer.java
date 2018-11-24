@@ -33,7 +33,7 @@ public class OutputLayer {
 		outputNeurons = new OutputNeuron[ outputCount ];
 		
 		for (int i = 0; i < outputCount; i++) {
-			outputNeurons[ i ] = new OutputNeuron( this, 0.2f );
+			outputNeurons[ i ] = new OutputNeuron( this, 0.1f );
 		}
 
 		//Init them
