@@ -2,6 +2,8 @@
 
 This is a simple, somewhat generalized system for creating multilayer perceptron networks.
 
+A disclaimer up front:  This isn't in working order.  It compiles, and it trains, but it can't do many things like save trained networks, or run new data through a trained network.  It often doesn't stop training, and it has a number of other problems.  It should be used as a learning device or as a way of expressing morbid curiosity
+
 To get started you'll need to know the format of network definition files, training data files, and data files.
 
 Before that, you'll want to know that you can use comments and empty lines in all of these file types.  Spaces can be used for padding and won't change how these files are parsed.
